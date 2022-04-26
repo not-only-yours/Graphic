@@ -5,28 +5,35 @@ namespace GraphicOne
 {
     public class Point
     {
-        private int X;
-        private int Y;
+        private double X;
+        private double Y;
+        private double Z;
 
-        public Point(int X, int Y)
+        public Point(double X, double Y, double Z)
         {
             this.X = X;
             this.Y = Y;
+            this.Z = Z;
         }
 
-        public int[] getPoint()
+        public double[] getPoint()
         {
-            return new int[] {X, Y};
+            return new double[] {X, Y, Z};
         }
 
-        public int getX()
+        public double getX()
         {
             return X;
         }
-        
-        public int getY()
+
+        public double getY()
         {
             return Y;
+        }
+
+        public double getZ()
+        {
+            return Z;
         }
     }
 }
