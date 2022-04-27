@@ -1,4 +1,4 @@
-namespace GraphicOne
+namespace Graphic
 {
     public class Cross
     {
