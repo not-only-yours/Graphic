@@ -1,6 +1,0 @@
-/Users/nikita_dir/Documents/projects/GraphicOne/GraphicOne/bin/Debug/GraphicOne.exe
-/Users/nikita_dir/Documents/projects/GraphicOne/GraphicOne/bin/Debug/GraphicOne.pdb
-/Users/nikita_dir/Documents/projects/GraphicOne/GraphicOne/obj/Debug/GraphicOne.csprojAssemblyReference.cache
-/Users/nikita_dir/Documents/projects/GraphicOne/GraphicOne/obj/Debug/GraphicOne.csproj.CoreCompileInputs.cache
-/Users/nikita_dir/Documents/projects/GraphicOne/GraphicOne/obj/Debug/GraphicOne.exe
-/Users/nikita_dir/Documents/projects/GraphicOne/GraphicOne/obj/Debug/GraphicOne.pdb
