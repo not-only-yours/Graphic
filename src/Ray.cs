@@ -17,16 +17,21 @@ namespace Graphic
         
         public static Ray FromPointAndXYZ(Point start, double x, double y, double z)
         {
-            return FromPointAndXYZ(
+            return new Ray(
                 start,
                 x,
                 y,
                 z);
         }
+        
+        public static double Dot(Ray one, Point two)
+        {
+            return one.X * two.X + one.Y * two.Y + one.Z * two.Z;
+        }
 
-        // public override string ToString()
-        // {
-        //     return $"{X} {Y} {Z}";
-        // }
+         public override string ToString()
+         {
+             return $"{X} {Y} {Z}";
+         }
     }
 }

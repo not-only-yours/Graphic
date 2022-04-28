@@ -6,11 +6,19 @@ namespace Graphic
     {
         public static void Main(string[] args)
         {
-            // Point one = new Point(352, 2353, 235);
-            // Point two = new Point(235, 567, 234);
-            // Point three = new Point(3, 3, 3);
+            Point triangleOne = Point.FromXYZ(0, 0, 0);
+            Point triangleTwo = Point.FromXYZ(10, 10, 0);
+            Point triangleThree = Point.FromXYZ(0, 10, 0);
+            
+            Point rayOne = Point.FromXYZ(0, 0, -2);
+            Ray r = Ray.FromPointAndXYZ(rayOne, 3,7, 5);
+            
             // Plane p = new Plane(one, two, three);
             // Vector.printVector(NormalVector.normalVector(p));
+            
+            
+            Triangle t = new Triangle(triangleOne, triangleTwo, triangleThree);
+            Cross.rayTriangleIntersection(r, t);
         }
     }
 }

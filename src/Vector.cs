@@ -46,6 +46,40 @@ namespace Graphic
         {
             return FromPoints(one.StartPoint - two.StartPoint, one.EndPoint - two.EndPoint);
         }
+        
+        public static double Dot(Vector one, Vector two)
+        {
+            return one.X * two.X + one.Y * two.Y + one.Z * two.Z;
+        }
+        
+        public static double Dot(Vector one, Ray two)
+        {
+            return one.X * two.X + one.Y * two.Y + one.Z * two.Z;
+        }
+        
+        public static double Dot(Vector one, Point two)
+        {
+            return one.X * two.X + one.Y * two.Y + one.Z * two.Z;
+        }
+        
+        public static Point Cross(Point one, Vector two)
+        {
+            return Point.FromXYZ(
+                one.Y * two.Z - one.Z * two.Y,
+                one.Z * two.X - one.X * two.Z,
+                one.X * two.Y - one.Y * two.X
+            );
+        }
+        
+        public static Ray Cross(Ray one, Vector two)
+        {
+            return Ray.FromPointAndXYZ(
+                one.StartPoint,
+                one.Y * two.Z - one.Z * two.Y,
+                one.Z * two.X - one.X * two.Z,
+                one.X * two.Y - one.Y * two.X
+            );;
+        }
 
         public override string ToString()
         {
