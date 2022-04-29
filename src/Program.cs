@@ -6,12 +6,12 @@ namespace Graphic
     {
         public static void Main(string[] args)
         {
-            Point triangleOne = Point.FromXYZ(0, 0, 0);
-            Point triangleTwo = Point.FromXYZ(10, 10, 0);
-            Point triangleThree = Point.FromXYZ(0, 10, 0);
+            var triangleOne = Point.FromXYZ(0, 0, 0);
+            var triangleTwo = Point.FromXYZ(10, 10, 0);
+            var triangleThree = Point.FromXYZ(0, 10, 0);
             
-            Point rayOne = Point.FromXYZ(0, 0, -2);
-            Ray r = Ray.FromPointAndXYZ(rayOne, 3,7, 5);
+            var rayOne = Point.FromXYZ(12, 12, 12);
+            var r = Ray.FromPointAndXYZ(rayOne, 0,0, 5);
             
             // Plane p = new Plane(one, two, three);
             // Vector.printVector(NormalVector.normalVector(p));

@@ -71,6 +71,16 @@ namespace Graphic
             );
         }
         
+        public static Ray Cross(Vector one, Vector two)
+        {
+            return Ray.FromPointAndXYZ(
+                one.StartPoint,
+                one.Y * two.Z - one.Z * two.Y,
+                one.Z * two.X - one.X * two.Z,
+                one.X * two.Y - one.Y * two.X
+            );
+        }
+        
         public static Ray Cross(Ray one, Vector two)
         {
             return Ray.FromPointAndXYZ(

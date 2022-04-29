@@ -28,6 +28,11 @@ namespace Graphic
         {
             return one.X * two.X + one.Y * two.Y + one.Z * two.Z;
         }
+        
+        public static double Dot(Ray one, Ray two)
+        {
+            return one.X * two.X + one.Y * two.Y + one.Z * two.Z;
+        }
 
          public override string ToString()
          {
