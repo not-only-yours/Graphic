@@ -2,12 +2,14 @@ namespace Graphic;
 
 public class Sphere
 {
-    public Point centre { get; private set; }
-    public double radius { get; private set; }
+    public Point Center { get; private set; }
+    public double Radius { get; private set; }
     
-    public Sphere(Point centre, double radius)
+    private Sphere(Point center, double radius)
     {
-        this.centre = centre;
-        this.radius = radius;
+        Center = center;
+        Radius = radius;
     }
+
+    public static Sphere FromCentreAndRadium(Point center, double radius) => new(center, radius);
 }
