@@ -17,9 +17,15 @@
             //
             // Triangle t = new Triangle(triangleOne, triangleTwo, triangleThree);
             // Cross.rayTriangleIntersection(r, t);
-            var sphere = Sphere.FromCentreAndRadius(Point.FromXYZ(0, 0, 0), 10);
-            var startPoint = Point.FromXYZ(12, 0, 0);
-            sphere.GetIntersectionWith(startPoint, Vector.FromPoints(startPoint, Point.FromXYZ(11, 0, 0)));
+            // var sphere = Sphere.FromCentreAndRadius(Point.FromXYZ(0, 0, 0), 10);
+            // var startPoint = Point.FromXYZ(12, 0, 0);
+            // sphere.GetIntersectionWith(startPoint, Vector.FromPoints(startPoint, Point.FromXYZ(11, 0, 0)));
+            Point camera = Point.FromXYZ(0, 0, 10);
+            
+            Sphere s = Sphere.FromCentreAndRadius(Point.FromXYZ(30,30,10), 5);
+
+            Display display = new Display(20, 20, camera);
+            display.RayTracing(camera, s);
         }
     }
 }

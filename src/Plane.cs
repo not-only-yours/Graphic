@@ -26,5 +26,16 @@ namespace Graphic
 
             return oneTwo.Cross(oneThree);
         }
+
+        public Point? GetIntersectionWith(Point origin, Vector ray)
+        {
+            //https://stackoverflow.com/questions/23975555/how-to-do-ray-plane-intersection
+            var n = GetNormalVector();
+            var oneTwo = Vector.FromPoints(PointOne, PointTwo);
+            
+            var d = oneTwo.Dot(Vector.FromXYZ(oneTwo.X,oneTwo.Y,oneTwo.Z));
+            var t = -(d + origin.Z * n.Z + origin.Y * n.Y + origin.X * n.X) / (ray.Z * n.Z + ray.Y * n.Y + ray.X * n.X);
+            return origin + ray * t;
+        }
     }
 }

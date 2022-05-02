@@ -67,5 +67,16 @@ namespace Graphic
         {
             return $"{X} {Y} {Z}";
         }
+
+        public double length()
+        {
+            return Math.Sqrt(Math.Pow(X, 2) + Math.Pow(Y, 2) + Math.Pow(Z, 2));
+        }
+        
+        public Vector norm()
+        {
+            //https://stackoverflow.com/questions/36180741/intersection-of-ray-and-rectangle-in-c
+            return this * (1 / Math.Sqrt(Math.Pow(X, 2) + Math.Pow(Y, 2) + Math.Pow(Z, 2)));
+        }
     }
 }
