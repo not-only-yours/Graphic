@@ -19,7 +19,7 @@
             // Cross.rayTriangleIntersection(r, t);
             var sphere = Sphere.FromCentreAndRadium(Point.FromXYZ(0, 0, 0), 10);
             var startPoint = Point.FromXYZ(12, 0, 0);
-            sphere.IsIntersectionWith(startPoint, Vector.FromPoints(startPoint, Point.FromXYZ(11, 0, 0)));
+            sphere.GetIntersectionWithRay(startPoint, Vector.FromPoints(startPoint, Point.FromXYZ(11, 0, 0)));
         }
     }
 }
