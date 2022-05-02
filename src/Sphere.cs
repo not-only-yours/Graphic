@@ -13,7 +13,7 @@ public class Sphere
 
     public static Sphere FromCentreAndRadium(Point center, double radius) => new(center, radius);
 
-    public Point? GetIntersectionWithRay(Point rayOrigin, Vector ray)
+    public Point? GetIntersectionWith(Point rayOrigin, Vector ray)
     {
         Vector centerToRayOrigin = Vector.FromPoints(Center, rayOrigin);
         double p = ray.Dot(centerToRayOrigin);
