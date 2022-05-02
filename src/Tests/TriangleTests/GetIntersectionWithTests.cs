@@ -1,6 +1,6 @@
 using NUnit.Framework;
 
-namespace Graphic.Tests.Triagle;
+namespace Graphic.Tests.TriangleTests;
 
 [TestFixture]
 public class GetIntersectionWithTests
