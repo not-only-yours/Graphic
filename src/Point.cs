@@ -47,5 +47,10 @@ namespace Graphic
         {
             return $"{X} {Y} {Z}";
         }
+        
+        public double DistanceTo(Point p)
+        {
+            return Math.Sqrt(Math.Pow((p.X - X), 2) + Math.Pow((p.Y - Y), 2) + Math.Pow((p.Z - Z), 2));
+        }
     }
 }

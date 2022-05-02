@@ -5,8 +5,8 @@
     &lt;TestId&gt;NUnit3x::6FCF8769-B264-49C2-81A3-0EE42527FC09::net6.0::Graphic.Tests.Triagle.GetIntersectionWithTests&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=956d9e14_002Dd608_002D4419_002Daf65_002D691b52d084cc/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Test1" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;NUnit3x::6FCF8769-B264-49C2-81A3-0EE42527FC09::net6.0::Graphic.Tests.RayTriangleIntersectionTests.Triangle_GetIntersectionWith_IsCorrect&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=956d9e14_002Dd608_002D4419_002Daf65_002D691b52d084cc/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Test1" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;NUnit3x::6FCF8769-B264-49C2-81A3-0EE42527FC09::net6.0::Graphic.Tests.Triagle.GetIntersectionWithTests&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
