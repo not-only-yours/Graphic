@@ -58,6 +58,11 @@ namespace Graphic
             );
         }
 
+        public bool IsZero()
+        {
+            return X == 0.0 && Y == 0.0 && Z == 0.0;
+        }
+        
         public override string ToString()
         {
             return $"{X} {Y} {Z}";
