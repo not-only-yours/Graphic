@@ -21,11 +21,11 @@
             // var startPoint = Point.FromXYZ(12, 0, 0);
             // sphere.GetIntersectionWith(startPoint, Vector.FromPoints(startPoint, Point.FromXYZ(11, 0, 0)));
             Point camera = Point.FromXYZ(0, 0, 10);
+            Vector light = Vector.FromXYZ(0,1,-2); 
+            Sphere s = Sphere.FromCentreAndRadius(Point.FromXYZ(10,10,10), 5);
             
-            Sphere s = Sphere.FromCentreAndRadius(Point.FromXYZ(30,30,10), 5);
-
             Display display = new Display(20, 20, camera);
-            display.RayTracing(camera, s);
+            display.RayTracing(camera,light, s);
         }
     }
 }

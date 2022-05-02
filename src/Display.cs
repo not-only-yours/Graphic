@@ -11,10 +11,10 @@ public class Display
     {
         displayHeight = x;
         displayLength = y;
-        
+
         display = Rectangle.FromPoints(
-            Point.FromXYZ(0, displayLength, 0), 
-            Point.FromXYZ(displayLength, 0, 0), 
+            Point.FromXYZ(0, displayLength, 0),
+            Point.FromXYZ(displayLength, 0, 0),
             Point.FromXYZ(0, displayLength, displayHeight),
             Point.FromXYZ(displayLength, 0, displayHeight)
         );
@@ -23,34 +23,68 @@ public class Display
         {
             for (int j = 0; j < displayHeight; j++)
             {
-                Console.WriteLine((0 + j)+" "+ (displayLength - j)+ " "+ i);
-                rays.Add(Vector.FromPoints(camera, Point.FromXYZ(0 + j, displayLength - j -1, i)));
-            } 
+                // Console.WriteLine((0 + j)+" "+ (displayLength - j - 1)+ " "+ i);
+                rays.Add(Vector.FromPoints(camera, Point.FromXYZ(0 + j, displayLength - j - 1, i)));
+            }
         }
     }
 
 
     public void RayTracing(Point camera, Sphere s)
     {
-        int[,] answer = new int[displayHeight + 1, displayLength + 1];
+        char[,] answer = new char[displayHeight, displayLength];
         foreach (Vector v in rays)
         {
-            Console.WriteLine(v.ToString());
+            // Console.WriteLine(v.ToString()); 
             if (s.GetIntersectionWith(camera, v) != null)
             {
-                answer[(int)v.Z + 10, (int)v.X] = 1;
+                answer[(int) (v.Z + camera.Z), (int) (v.X + camera.X)] = '#';
             }
             else
             {
-                answer[(int)v.Z + 10, (int)v.X] = 0;
+                answer[(int) (v.Z + camera.Z), (int) (v.X + camera.X)] = ' ';
             }
         }
 
-        for (int i = 0; i < 20; i++)
+        PrintResult(answer);
+    }
+
+    public void RayTracing(Point camera, Vector light, Sphere s)
+    {
+        char[,] answer = new char[displayHeight, displayLength];
+        foreach (Vector v in rays)
         {
-            for (int j = 0; j < 20; j++)
+            // Console.WriteLine(v.ToString()); 
+            var ans = v.norm().Dot(light);
+                //Console.WriteLine(ans);
+            if (s.GetIntersectionWith(camera, v) != null)
             {
-                Console.Write(answer[i,j]);
+                answer[(int) (v.Z + camera.Z), (int) (v.X + camera.X)] = ans switch
+                {
+                    < 0 => ' ',
+                    >= 0 and <= 0.2 => '.',
+                    > 0.2 and <= 0.5 => '*',
+                    > 0.5 and <= 0.8 => '0',
+                    > 0.8 => '#',
+                    _ => answer[(int) (v.Z + camera.Z), (int) (v.X + camera.X)]
+                };
+
+            }
+            else
+            {
+                answer[(int) (v.Z + camera.Z), (int) (v.X + camera.X)] = ' ';
+            }
+        }
+        PrintResult(answer);
+    }
+
+    public void PrintResult(char[,] answer)
+    {
+        for (int i = 0; i < displayHeight; i++)
+        {
+            for (int j = 0; j < displayLength; j++)
+            {
+                Console.Write(answer[i,j] + " ");
             } 
             Console.WriteLine();
         }
