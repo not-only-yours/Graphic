@@ -103,4 +103,41 @@ public class Scene
         
         Screen.Draw();
     }
+    
+    public void DrawRayTracing(Vector lightSource, List<Shape> shapes)
+    {
+        Screen.Reset();
+
+        shapes.Sort((s1, s2) => s1.GetDistanceTo(Camera.Origin).CompareTo(s2.GetDistanceTo(Camera.Origin)));
+        var nearestShape = shapes.First();
+        
+        foreach (var point in GetViewpointPoints())
+        {
+            var cameraToPoint = point.point - Camera.Origin;
+
+            var hasIntersection = nearestShape.GetIntersectionWith(Camera.Origin, cameraToPoint) != null;
+            
+            if (hasIntersection)
+            {
+                var ch = cameraToPoint.GetUnitVector().Dot(lightSource) switch
+                {
+                    < 0 => ' ',
+                    >= 0 and <= 0.2 => '.',
+                    > 0.2 and <= 0.5 => '*',
+                    > 0.5 and <= 0.8 => '0',
+                    > 0.8 => '#',
+                    _ => throw new ArgumentOutOfRangeException()
+                };
+
+                Screen.SetChar(point.i, point.j, ch);
+
+            }
+            else
+            {
+                Screen.SetChar(point.i, point.j, ' ');
+            }
+        }
+        
+        Screen.Draw();
+    }
 }

@@ -42,6 +42,11 @@ namespace Graphic
             var lightSource = Vector.FromXYZ(5, 5, 1); 
             
             scene.DrawRayTracing(lightSource, sphere);
+            
+            // 5
+            var sphere2 = Sphere.FromCentreAndRadius(Point.FromXYZ(5, 0, 15), 7);
+            
+            scene.DrawRayTracing(lightSource, new List<Shape>() {sphere, sphere2});
         }
     }
 }

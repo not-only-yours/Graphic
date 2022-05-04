@@ -39,5 +39,10 @@ namespace Graphic.Geometry.Shapes
                     (ray.Z * Normal.Z + ray.Y * Normal.Y + ray.X * Normal.X);
             return origin + ray * t;
         }
+
+        public override double GetDistanceTo(Point point)
+        {
+            return Normal.Dot(point - Center);
+        }
     }
 }

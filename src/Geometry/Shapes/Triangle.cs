@@ -79,4 +79,9 @@ public class Triangle : Shape
         
         return null;
     }
+
+    public override double GetDistanceTo(Point point)
+    {
+        throw new NotImplementedException();
+    }
 }

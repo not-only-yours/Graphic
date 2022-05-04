@@ -67,4 +67,9 @@ public class Sphere : Shape
         //     Point.FromXYZ(rayOrigin.X + ray.X * dist1, rayOrigin.Y + ray.Y * dist1, rayOrigin.Z + ray.Z * dist1) : 
         //     Point.FromXYZ(rayOrigin.X + ray.X * dist2, rayOrigin.Y + ray.Y * dist2, rayOrigin.Z + ray.Z * dist2);
     }
+
+    public override double GetDistanceTo(Point point)
+    {
+        return Math.Abs(Center.DistanceTo(point) - Radius);
+    }
 }
