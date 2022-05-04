@@ -1,4 +1,4 @@
-namespace Graphic
+namespace Graphic.Geometry
 {
     public class Vector
     {

@@ -1,4 +1,6 @@
-﻿namespace Graphic;
+﻿using Graphic.Geometry;
+
+namespace Graphic;
 
 public class Camera
 {
