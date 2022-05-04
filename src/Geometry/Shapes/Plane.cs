@@ -42,7 +42,9 @@ namespace Graphic.Geometry.Shapes
 
         public override double GetDistanceTo(Point point)
         {
-            return Normal.Dot(point - Center);
+            var d = Math.Abs(X * point.X + Y * point.Y + Z * point.Z + D);
+            var e = Math.Sqrt(X * X + Y * Y + Z * Z);
+            return d / e;
         }
     }
 }
