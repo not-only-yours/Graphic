@@ -19,23 +19,6 @@ namespace Graphic
         public static Point operator -(Point one, Vector two) => FromXYZ(one.X - two.X, one.Y - two.Y, one.Z - two.Z);
         public static Vector operator -(Point one, Point two) => Vector.FromXYZ(one.X - two.X, one.Y - two.Y, one.Z - two.Z);
        
-        // public static Point operator *(Point one, Point two) => FromXYZ(one.X * two.X, one.Y * two.Y, one.Z * two.Z);
-        // public static Point operator *(Point one, double two) => FromXYZ(one.X * two, one.Y * two, one.Z * two);
-        
-        // public double Dot(Vector vector)
-        // {
-        //     return X * vector.X + Y * vector.Y + Z * vector.Z;
-        // }
-        //
-        // public Point Cross(Vector vector)
-        // {
-        //     return FromXYZ(
-        //         Y * vector.Z - Z * vector.Y,
-        //         Z * vector.X - X * vector.Z,
-        //         X * vector.Y - Y * vector.X
-        //     );
-        // }
-
         public Point MoveInDirection(Vector direction, double distance)
         {
             return this + direction.GetUnitVector() * distance;
