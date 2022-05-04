@@ -7,14 +7,13 @@ public class Screen
 {
     public int Height { get; private set; }
     public int Width { get; private set; }
-    
-    private char[,] _chars;
+    public char[,] Chars { get; private set; }
 
     private Screen(int height, int width)
     {
         Height = height;
         Width = width;
-        _chars = new char[height, width];
+        Chars = new char[height, width];
     }
 
     public static Screen FromResolution(int resolution) => new(resolution, resolution);
@@ -28,12 +27,12 @@ public class Screen
     
     public void SetChar(int i, int j, char c)
     {
-        _chars[i, j] = c;
+        Chars[i, j] = c;
     }
     
     public void Reset()
     {
-        _chars = new char[Height, Width];
+        Chars = new char[Height, Width];
     }
     
     public void Draw()
@@ -42,7 +41,7 @@ public class Screen
         {
             for (var j = 0; j < Width; j++)
             {
-                Console.Write(_chars[i, j] + " ");
+                Console.Write(Chars[i, j] + " ");
             } 
             Console.WriteLine();
         }
