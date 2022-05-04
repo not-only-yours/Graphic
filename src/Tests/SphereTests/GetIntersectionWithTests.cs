@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Graphic.Geometry.Shapes;
+using NUnit.Framework;
 
 namespace Graphic.Tests.SphereTests;
 

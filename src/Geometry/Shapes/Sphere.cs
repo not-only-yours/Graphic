@@ -1,6 +1,6 @@
-namespace Graphic;
+namespace Graphic.Geometry.Shapes;
 
-public class Sphere
+public class Sphere : Shape
 {
     public Point Center { get; private set; }
     public double Radius { get; private set; }
@@ -14,7 +14,7 @@ public class Sphere
     public static Sphere FromCentreAndRadius(Point center, double radius) => new(center, radius);
 
     // http://www.cplusplus.com/forum/general/279409/
-    public Point? GetIntersectionWith(Point origin, Vector ray)
+    public override Point? GetIntersectionWith(Point origin, Vector ray)
     {
         Vector originToCenter = origin - Center;
         double a = ray.Dot(ray);

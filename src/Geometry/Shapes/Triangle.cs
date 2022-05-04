@@ -1,6 +1,6 @@
-namespace Graphic;
+namespace Graphic.Geometry.Shapes;
 
-public class Triangle
+public class Triangle : Shape
 {
     public Point One { get; private set; }
     public Point Two { get; private set; }
@@ -27,7 +27,7 @@ public class Triangle
     }
 
     // https://en.wikipedia.org/wiki/M%C3%B6ller%E2%80%93Trumbore_intersection_algorithm
-    public Point? GetIntersectionWith(Point rayOrigin, Vector ray)
+    public override Point? GetIntersectionWith(Point rayOrigin, Vector ray)
     {
         const double eps = 0.0000001;
         

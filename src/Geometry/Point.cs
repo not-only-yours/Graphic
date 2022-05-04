@@ -35,6 +35,11 @@ namespace Graphic
         //         X * vector.Y - Y * vector.X
         //     );
         // }
+
+        public Point MoveInDirection(Vector direction, double distance)
+        {
+            return this + direction.GetUnitVector() * distance;
+        }
         
         public bool IsEqualTo(Point other, double epsilon = 0.01)
         {

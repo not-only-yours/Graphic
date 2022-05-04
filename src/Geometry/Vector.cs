@@ -63,20 +63,19 @@ namespace Graphic
             return X == 0.0 && Y == 0.0 && Z == 0.0;
         }
         
+        public double GetLength()
+        {
+            return Math.Sqrt(X * X + Y * Y + Z * Z);
+        }
+
+        public Vector GetUnitVector()
+        {
+            return this * (1 / GetLength());
+        }
+        
         public override string ToString()
         {
             return $"{X} {Y} {Z}";
-        }
-
-        public double length()
-        {
-            return Math.Sqrt(Math.Pow(X, 2) + Math.Pow(Y, 2) + Math.Pow(Z, 2));
-        }
-        
-        public Vector norm()
-        {
-            //https://stackoverflow.com/questions/36180741/intersection-of-ray-and-rectangle-in-c
-            return this * (1 / Math.Sqrt(Math.Pow(X, 2) + Math.Pow(Y, 2) + Math.Pow(Z, 2)));
         }
     }
 }

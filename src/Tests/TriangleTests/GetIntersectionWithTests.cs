@@ -1,3 +1,4 @@
+using Graphic.Geometry.Shapes;
 using NUnit.Framework;
 
 namespace Graphic.Tests.TriangleTests;
