@@ -1,12 +1,12 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/PredefinedNamingRules/=Method/@EntryIndexedValue">&lt;Policy Inspect="True" Prefix="" Suffix="" Style="AaBb_AaBb" /&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=214e0f10_002D4a0f_002D4614_002D8c59_002Dcb5e024e2b6f/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Test1 #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;TestAncestor&gt;
-    &lt;TestId&gt;NUnit3x::6FCF8769-B264-49C2-81A3-0EE42527FC09::net6.0::Graphic.Tests.SphereTests.GetIntersectionWithTests&lt;/TestId&gt;
-    &lt;TestId&gt;NUnit3x::6FCF8769-B264-49C2-81A3-0EE42527FC09::net6.0::Graphic.Tests.SphereTests.GetDistanceToTests&lt;/TestId&gt;
-    &lt;TestId&gt;NUnit3x::6FCF8769-B264-49C2-81A3-0EE42527FC09::net6.0::Graphic.Tests.PlaneTests.GetDistanceToTests&lt;/TestId&gt;
-    &lt;TestId&gt;NUnit3x::6FCF8769-B264-49C2-81A3-0EE42527FC09::net6.0::Graphic.Tests.SceneTests.RayTracingTests.Scene_DrawRayTracingTests_WithoutLightSource_ReturnsCorrectMatrix&lt;/TestId&gt;
-    &lt;TestId&gt;NUnit3x::6FCF8769-B264-49C2-81A3-0EE42527FC09::net6.0::Graphic.Tests.SceneTests.RayTracingTests&lt;/TestId&gt;
-  &lt;/TestAncestor&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=214e0f10_002D4a0f_002D4614_002D8c59_002Dcb5e024e2b6f/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Test1 #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::6FCF8769-B264-49C2-81A3-0EE42527FC09::net6.0::Graphic.Tests.SphereTests.GetIntersectionWithTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::6FCF8769-B264-49C2-81A3-0EE42527FC09::net6.0::Graphic.Tests.SphereTests.GetDistanceToTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::6FCF8769-B264-49C2-81A3-0EE42527FC09::net6.0::Graphic.Tests.PlaneTests.GetDistanceToTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::6FCF8769-B264-49C2-81A3-0EE42527FC09::net6.0::Graphic.Tests.SceneTests.RayTracingTests.Scene_DrawRayTracingTests_WithoutLightSource_ReturnsCorrectMatrix&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::6FCF8769-B264-49C2-81A3-0EE42527FC09::net6.0::Graphic.Tests.SceneTests.RayTracingTests&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
 	</wpf:ResourceDictionary>

@@ -35,8 +35,7 @@ namespace Graphic.Geometry.Shapes
         // https://stackoverflow.com/questions/23975555/how-to-do-ray-plane-intersection
         public override Point? GetIntersectionWith(Point origin, Vector ray)
         {
-            var t = -(D + origin.Z * Normal.Z + origin.Y * Normal.Y + origin.X * Normal.X) /
-                    (ray.Z * Normal.Z + ray.Y * Normal.Y + ray.X * Normal.X);
+            var t = -(D + origin.Z * Z + origin.Y * Y + origin.X * X) / (ray.Z * Z + ray.Y * Y + ray.X * X);
             return origin + ray * t;
         }
 
