@@ -1,7 +1,4 @@
-using Graphic.Geometry.Shapes;
-using NUnit.Framework;
-
-namespace Graphic;
+namespace Core.Scenery;
 
 public class Screen
 {

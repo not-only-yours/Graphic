@@ -1,8 +1,10 @@
-﻿using Graphic.Geometry;
-using Graphic.Geometry.Shapes;
+﻿using Core.Geometry;
+using Core.Geometry.Shapes;
+using Core.Scenery;
+using Core.Tests.Utils;
 using NUnit.Framework;
 
-namespace Graphic.Tests.SceneTests;
+namespace Core.Tests.SceneTests;
 
 public class RayTracingTests
 {
@@ -39,7 +41,7 @@ public class RayTracingTests
             {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
         };
         
-        Assert.IsTrue(TestUtils.IsArrayEquals(scene.Screen.Chars, expected));
+        Assert.IsTrue(ArrayUtils.IsArrayEquals(scene.Screen.Chars, expected));
     }
     
     [Test]
@@ -77,6 +79,6 @@ public class RayTracingTests
             {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
         };
         
-        Assert.IsTrue(TestUtils.IsArrayEquals(scene.Screen.Chars, expected));
+        Assert.IsTrue(ArrayUtils.IsArrayEquals(scene.Screen.Chars, expected));
     }
 }

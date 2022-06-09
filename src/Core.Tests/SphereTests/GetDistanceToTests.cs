@@ -1,8 +1,10 @@
-﻿using Graphic.Geometry;
-using Graphic.Geometry.Shapes;
+﻿using System;
+using System.Collections.Generic;
+using Core.Geometry;
+using Core.Geometry.Shapes;
 using NUnit.Framework;
 
-namespace Graphic.Tests.SphereTests;
+namespace Core.Tests.SphereTests;
 
 public class GetDistanceToTests
 {

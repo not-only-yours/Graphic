@@ -1,7 +1,7 @@
-﻿using Graphic.Geometry;
-using Graphic.Geometry.Shapes;
+﻿using Core.Geometry;
+using Core.Geometry.Shapes;
 
-namespace Graphic;
+namespace Core.Scenery;
 
 public class Scene
 {
@@ -28,7 +28,7 @@ public class Scene
             cameraDirection,
             distanceFromCameraToViewpoint);
         
-        Screen = Screen.FromResolution(20);
+        Screen = Screen.FromResolution(60);
     }
 
     public static Scene CreateNew() => new();
@@ -39,8 +39,7 @@ public class Scene
 
         var viewpointCenter = Camera.Origin + Camera.Direction * Camera.Distance;
 
-        var step = 0.5;
-        
+        // TODO: scale image
         var leftX = viewpointCenter.X - Screen.Height / 2.0;
         var leftY = viewpointCenter.Y - Screen.Width / 2.0;
         
@@ -109,12 +108,12 @@ public class Scene
     {
         Screen.Reset();
 
-        shapes.Sort((s1, s2) => s1.GetDistanceTo(Camera.Origin).CompareTo(s2.GetDistanceTo(Camera.Origin)));
-        var nearestShape = shapes.First();
-        
         foreach (var point in GetViewpointPoints())
         {
             var cameraToPoint = point.point - Camera.Origin;
+            
+            shapes.Sort((s1, s2) => s1.GetDistanceTo(point.point).CompareTo(s2.GetDistanceTo(point.point)));
+            var nearestShape = shapes.First();
 
             var hasIntersection = nearestShape.GetIntersectionWith(Camera.Origin, cameraToPoint) != null;
             

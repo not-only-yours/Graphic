@@ -1,4 +1,4 @@
-namespace Graphic.Geometry.Shapes
+namespace Core.Geometry.Shapes
 {
     public class Plane : Shape
     {

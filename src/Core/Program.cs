@@ -1,7 +1,8 @@
-﻿using Graphic.Geometry;
-using Graphic.Geometry.Shapes;
+﻿using Core.Geometry;
+using Core.Geometry.Shapes;
+using Core.Scenery;
 
-namespace Graphic
+namespace Core
 {
     internal class Program
     {

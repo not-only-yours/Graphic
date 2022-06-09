@@ -1,6 +1,6 @@
-﻿namespace Graphic.Tests;
+﻿namespace Core.Tests.Utils;
 
-public static class TestUtils
+public static class ArrayUtils
 {
     public static bool IsArrayEquals<T>(T[,] arr1, T[,] arr2)
     {

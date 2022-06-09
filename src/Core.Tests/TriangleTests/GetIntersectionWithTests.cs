@@ -1,8 +1,9 @@
-using Graphic.Geometry;
-using Graphic.Geometry.Shapes;
+using System.Collections.Generic;
+using Core.Geometry;
+using Core.Geometry.Shapes;
 using NUnit.Framework;
 
-namespace Graphic.Tests.TriangleTests;
+namespace Core.Tests.TriangleTests;
 
 [TestFixture]
 public class GetIntersectionWithTests

@@ -1,4 +1,4 @@
-namespace Graphic.Geometry
+namespace Core.Geometry
 {
     public class Point
     {

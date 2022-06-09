@@ -1,6 +1,6 @@
-﻿using Graphic.Geometry;
+﻿using Core.Geometry;
 
-namespace Graphic;
+namespace Core.Scenery;
 
 public class Camera
 {

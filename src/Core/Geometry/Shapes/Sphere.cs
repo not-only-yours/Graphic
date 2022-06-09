@@ -1,4 +1,4 @@
-namespace Graphic.Geometry.Shapes;
+namespace Core.Geometry.Shapes;
 
 public class Sphere : Shape
 {
@@ -38,6 +38,7 @@ public class Sphere : Shape
         
         double t = (-b + Math.Sqrt(discriminant)) / (2 * a);
         double t2 = -b / a - t;
+        // TODO: compare to tMax (pass as param)
         if (Math.Abs(t2) < Math.Abs(t)) t = t2;
         return origin + ray * t;
     }
