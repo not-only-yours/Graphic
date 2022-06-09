@@ -47,4 +47,9 @@ public class Sphere : Shape
     {
         return Math.Abs(Center.DistanceTo(point) - Radius);
     }
+    
+    public override string ToString()
+    {
+        return $"Sphere(Center={Center}, Radius={Radius})";
+    }
 }

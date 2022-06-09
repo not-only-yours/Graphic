@@ -41,4 +41,9 @@ public class Cylinder : Shape
     {
         throw new NotImplementedException();
     }
+
+    public override string ToString()
+    {
+        return $"Cylinder(Center={Center}, Radius={Radius}, Height={Height})";
+    }
 }

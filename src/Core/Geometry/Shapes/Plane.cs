@@ -45,5 +45,10 @@ namespace Core.Geometry.Shapes
             var e = Math.Sqrt(X * X + Y * Y + Z * Z);
             return d / e;
         }
+        
+        public override string ToString()
+        {
+            return $"Plane(X={X}, Y={Y}, Z={Z}, D={D})";
+        }
     }
 }

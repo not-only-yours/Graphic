@@ -36,4 +36,9 @@ public class Disc : Shape
     {
         throw new NotImplementedException();
     }
+
+    public override string ToString()
+    {
+        return $"Disc(Center={Center}, RadiusSmall={RadiusSmall}, RadiusBig={RadiusBig}, Normal={Normal})";
+    }
 }

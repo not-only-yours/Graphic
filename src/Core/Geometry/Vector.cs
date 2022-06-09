@@ -22,27 +22,6 @@ namespace Core.Geometry
         
         public static Vector operator *(Vector one, double two) => FromXYZ(one.X * two, one.Y * two, one.Z * two);
 
-        // public static Vector operator +(Vector one, Vector two) => FromPoints(one.StartPoint + two.StartPoint, one.EndPoint + two.EndPoint);
-        // public static Vector operator -(Vector one, Vector two)
-        // {
-        //     return FromPoints(one.StartPoint - two.StartPoint, one.EndPoint - two.EndPoint);
-        // }
-        //
-        // public static double Dot(Vector one, Vector two)
-        // {
-        //     return one.X * two.X + one.Y * two.Y + one.Z * two.Z;
-        // }
-        //
-        
-        //
-        // public static double Dot(Vector one, Point two)
-        // {
-        //     return one.X * two.X + one.Y * two.Y + one.Z * two.Z;
-        // }
-        //
-        // 
-        //
-        
         public double Dot(Vector vector)
         {
             return X * vector.X + Y * vector.Y + Z * vector.Z;
@@ -75,7 +54,7 @@ namespace Core.Geometry
         
         public override string ToString()
         {
-            return $"{X} {Y} {Z}";
+            return $"Vector(X={X}, Y={Y}, Z={Z})";
         }
     }
 }

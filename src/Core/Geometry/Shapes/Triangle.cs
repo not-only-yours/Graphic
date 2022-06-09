@@ -84,4 +84,9 @@ public class Triangle : Shape
     {
         throw new NotImplementedException();
     }
+    
+    public override string ToString()
+    {
+        return $"Triangle(One={One}, Two={Two}, Three={Three})";
+    }
 }

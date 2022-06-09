@@ -33,7 +33,7 @@ namespace Core.Geometry
         
         public override string ToString()
         {
-            return $"{X} {Y} {Z}";
+            return $"Point(X={X}, Y={Y}, Z={Z})";
         }
         
         public double DistanceTo(Point p)
