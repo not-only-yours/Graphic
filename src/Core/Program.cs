@@ -1,5 +1,6 @@
 ﻿using Core.Geometry;
 using Core.Geometry.Shapes;
+using Core.RayTracing;
 using Core.Scenery;
 
 namespace Core
@@ -8,22 +9,38 @@ namespace Core
     {
         public static void Main(string[] args)
         {
+            var cameraOrigin = Point.FromXYZ(0, 0, 0);
+            var distanceFromCameraToViewpoint = 10.0;
+            var cameraDirection = Vector.FromXYZ(0, 0, 1);
+        
+            // Viewpoint = Plane.FromCenterAndNormal(
+            //     cameraOrigin + cameraDirection * distanceFromCameraToViewpoint,
+            //     cameraDirection);
+        
+            var camera = Camera.CreateNew(
+                cameraOrigin,
+                cameraDirection,
+                distanceFromCameraToViewpoint);
+            
+            var screen = Screen.FromResolution(60);
+            
+            
             // 4.1
-            var scene = Scene.CreateNew();
+            var scene = new Scene(camera, screen);
             
             var sphere = Sphere.FromCentreAndRadius(Point.FromXYZ(0, 0, 20), 10);
             
-            scene.DrawRayTracing(sphere);
+            scene.RayTrace(new SphereRayTracer(sphere, camera));
             
             // 4.2
             var lightSource = Vector.FromXYZ(5, 5, 1); 
             
-            scene.DrawRayTracing(lightSource, sphere);
+            scene.RayTrace(new SphereWithLightSourceRayTracer(sphere, camera, lightSource));
             
             // 5
             var sphere2 = Sphere.FromCentreAndRadius(Point.FromXYZ(5, 0, 15), 7);
             
-            scene.DrawRayTracing(lightSource, new List<Shape>() {sphere, sphere2});
+            scene.RayTrace(new ShapesWithLightSourceRayTracer(new List<Shape>() {sphere, sphere2}, camera, lightSource));
         }
     }
 }
