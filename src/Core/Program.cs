@@ -41,6 +41,11 @@ namespace Core
             var sphere2 = Sphere.FromCentreAndRadius(Point.FromXYZ(5, 0, 15), 7);
             
             scene.RayTrace(new ShapesWithLightSourceRayTracer(new List<Shape>() {sphere, sphere2}, camera, lightSource));
+        
+            //Lab 2
+            scene.GenerateRayTracePicture("/Users/nikita_dir/Documents/projects/Graphic/src/test.ppm");
+            var reader = FileReader.CreateReader("/Users/nikita_dir/Downloads/car.obj");
+            reader.ReadOBJ();
         }
     }
 }
