@@ -1,3 +1,5 @@
+using System.Collections;
+
 namespace Core.Geometry.Shapes;
 
 public class Triangle : Shape
@@ -6,15 +8,29 @@ public class Triangle : Shape
     public Point Two { get; private set; }
     public Point Three { get; private set; }
     
+    public ArrayList Normal { get; private set; }
+    
     private Triangle(Point one, Point two, Point three) {
         One = one;
         Two = two;
         Three = three;
     }
+    
+    private Triangle(Point one, Point two, Point three, ArrayList normal) {
+        One = one;
+        Two = two;
+        Three = three;
+        Normal = normal;
+    }
 
     public static Triangle FromPoints(Point one, Point two, Point three)
     {
         return new Triangle(one, two, three);
+    }
+    
+    public static Triangle FromPointsAndNormal(Point one, Point two, Point three, ArrayList normal)
+    {
+        return new Triangle(one, two, three, normal);
     }
     
     public Vector GetNormalVector()
