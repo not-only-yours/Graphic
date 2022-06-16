@@ -65,8 +65,8 @@ public class FileReader
         {
             //Console.WriteLine(buffer[i] + " " + buffer[i].Split("/").Length);
             var b = buffer[i].Split("/");
-            points.Add(PointList[Convert.ToInt16(b[0]) - 1]);
-            normals.Add(NormalList[Convert.ToInt16(b[2])]);
+            points.Add(PointList[Convert.ToInt32(b[0]) - 1]);
+            normals.Add(NormalList[Convert.ToInt32(b[2]) - 1]);
         }
         //Console.WriteLine(points[0] + " " + points[1] + " " + points[2]);
         FigureList.Add(Triangle.FromPointsAndNormal((Point) points[0], (Point) points[1], (Point)  points[2],  normals));
