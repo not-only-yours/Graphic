@@ -45,7 +45,9 @@ namespace Core
             //Lab 2
             scene.GenerateRayTracePicture("/Users/nikita_dir/Documents/projects/Graphic/src/test.ppm");
             var reader = FileReader.CreateReader("/Users/nikita_dir/Downloads/car.obj");
+            String s = "aa//aa";
             reader.ReadOBJ();
+            
         }
     }
 }
