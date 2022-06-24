@@ -1,3 +1,6 @@
+using Core.Geometry.Shapes.Abstract;
+using Core.Matrices;
+
 namespace Core.Geometry.Shapes;
 
 public class Sphere : Shape
@@ -14,7 +17,7 @@ public class Sphere : Shape
     public static Sphere FromCentreAndRadius(Point center, double radius) => new(center, radius);
 
     // http://www.cplusplus.com/forum/general/279409/
-    public override Point? GetIntersectionWith(Point origin, Vector ray)
+    public override Intersection? GetIntersectionWith(Point origin, Vector ray)
     {
         Vector originToCenter = origin - Center;
         double a = ray.Dot(ray);
@@ -31,23 +34,39 @@ public class Sphere : Shape
         if (discriminant == 0)
         {
             if (ray.IsZero()) return null;
+
+            var point1 = origin + ray * (-0.5 * b / a);
             
             // Only one intersection
-            return origin + ray * (-0.5 * b / a);
+            return Intersection.Found(
+                point1,
+                point1.DistanceTo(Center),
+                point1 - Center);
         }
         
         double t = (-b + Math.Sqrt(discriminant)) / (2 * a);
         double t2 = -b / a - t;
         // TODO: compare to tMax (pass as param)
         if (Math.Abs(t2) < Math.Abs(t)) t = t2;
-        return origin + ray * t;
+
+        var point = origin + ray * t;
+        
+        return Intersection.Found(
+            point,
+            point.DistanceTo(Center),
+            point - Center);
     }
 
-    public override double GetDistanceTo(Point point)
+    // public override double GetDistanceTo(Point point)
+    // {
+    //     return Math.Abs(Center.DistanceTo(point) - Radius);
+    // }
+
+    public override void Transform(Matrix4x4 transformationMatrix)
     {
-        return Math.Abs(Center.DistanceTo(point) - Radius);
+        throw new NotImplementedException();
     }
-    
+
     public override string ToString()
     {
         return $"Sphere(Center={Center}, Radius={Radius})";

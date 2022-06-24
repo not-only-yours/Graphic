@@ -1,3 +1,6 @@
+using Core.Geometry.Shapes.Abstract;
+using Core.Matrices;
+
 namespace Core.Geometry.Shapes;
 
 public class Cylinder : Shape
@@ -16,7 +19,7 @@ public class Cylinder : Shape
 
     public static Cylinder FromCentreHeightAndRadius(Point center, double radius, double height) => new(center, radius, height);
 
-    public override Point? GetIntersectionWith(Point origin, Vector ray)
+    public override Intersection? GetIntersectionWith(Point origin, Vector ray)
     {
         var a = (ray.X * ray.X) + (ray.Z * ray.Z);
         var b = 2*(ray.X*(origin.X-Center.X) + ray.Z*(origin.Z-Center.Z));
@@ -33,11 +36,16 @@ public class Cylinder : Shape
     
         var r = origin.Y + t*ray.Y;
     
-        if ((r >= Center.Y) && (r <= Center.Y + Height))return origin + ray * t;
-        else return null;
+        if ((r >= Center.Y) && (r <= Center.Y + Height))
+            return Intersection.Found(
+                origin + ray * t,
+                0,
+                Vector.FromXYZ(0, 0, 0)); //TODO: fix
+        
+        return null;
     }
 
-    public override double GetDistanceTo(Point point)
+    public override void Transform(Matrix4x4 transformationMatrix)
     {
         throw new NotImplementedException();
     }

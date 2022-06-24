@@ -1,3 +1,5 @@
+using Core.Matrices;
+
 namespace Core.Geometry
 {
     public class Vector
@@ -5,6 +7,8 @@ namespace Core.Geometry
         public double X { get; private set; }
         public double Y { get; private set; }
         public double Z { get; private set; }
+
+        private static readonly Vector _empty = new Vector(0, 0, 0);
         
         private Vector(double x, double y, double z)
         {
@@ -18,9 +22,11 @@ namespace Core.Geometry
                 endPoint.Y - startPoint.Y,
                 endPoint.Z - startPoint.Z);
         public static Vector FromXYZ(double x, double y, double z) => new(x, y, z);
-        public static Vector Empty() => new(0, 0, 0);
+        public static Vector Empty() => _empty;
         
         public static Vector operator *(Vector one, double two) => FromXYZ(one.X * two, one.Y * two, one.Z * two);
+        public static Vector operator +(Vector one, Vector two) => FromXYZ(one.X + two.X, one.Y + two.Y, one.Z + two.Z);
+        public static Vector operator /(Vector one, double two) => new(one.X / two, one.Y / two, one.Z / two);
 
         public double Dot(Vector vector)
         {
@@ -35,6 +41,13 @@ namespace Core.Geometry
                 Z * vector.X - X * vector.Z,
                 X * vector.Y - Y * vector.X
             );
+        }
+
+        public void Transform(Matrix4x4 transformation)
+        {
+            X = transformation.M11 * X + transformation.M12 * Y + transformation.M13 * Z;
+            Y = transformation.M21 * X + transformation.M22 * Y + transformation.M23 * Z;
+            Z = transformation.M31 * X + transformation.M32 * Y + transformation.M33 * Z;
         }
 
         public bool IsZero()

@@ -1,3 +1,6 @@
+using Core.Geometry.Shapes.Abstract;
+using Core.Matrices;
+
 namespace Core.Geometry.Shapes
 {
     public class Plane : Shape
@@ -33,19 +36,27 @@ namespace Core.Geometry.Shapes
         }
         
         // https://stackoverflow.com/questions/23975555/how-to-do-ray-plane-intersection
-        public override Point? GetIntersectionWith(Point origin, Vector ray)
+        public override Intersection? GetIntersectionWith(Point origin, Vector ray)
         {
             var t = -(D + origin.Z * Z + origin.Y * Y + origin.X * X) / (ray.Z * Z + ray.Y * Y + ray.X * X);
-            return origin + ray * t;
+            return Intersection.Found(
+                origin + ray * t,
+                t,
+                Normal * -1);
         }
 
-        public override double GetDistanceTo(Point point)
+        // public override double GetDistanceTo(Point point)
+        // {
+        //     var d = Math.Abs(X * point.X + Y * point.Y + Z * point.Z + D);
+        //     var e = Math.Sqrt(X * X + Y * Y + Z * Z);
+        //     return d / e;
+        // }
+
+        public override void Transform(Matrix4x4 transformationMatrix)
         {
-            var d = Math.Abs(X * point.X + Y * point.Y + Z * point.Z + D);
-            var e = Math.Sqrt(X * X + Y * Y + Z * Z);
-            return d / e;
+            throw new NotImplementedException();
         }
-        
+
         public override string ToString()
         {
             return $"Plane(X={X}, Y={Y}, Z={Z}, D={D})";
