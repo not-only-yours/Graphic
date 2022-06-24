@@ -29,11 +29,6 @@ public class Triangle : Shape
         N2 = n2;
     }
 
-    // public static Triangle FromPoints(Point one, Point two, Point three)
-    // {
-    //     return new Triangle(one, two, three);
-    // }
-    
     public static Triangle FromPointsAndNormals(Point one, Point two, Point three, Vector n0, Vector n1, Vector n2)
     {
         return new Triangle(one, two, three, n0, n1, n2);
@@ -49,7 +44,7 @@ public class Triangle : Shape
     }
 
     // https://en.wikipedia.org/wiki/M%C3%B6ller%E2%80%93Trumbore_intersection_algorithm
-    public override Intersection? GetIntersectionWith(Point rayOrigin, Vector ray)
+    public override Intersection? GetIntersectionWith(Point rayOrigin, Vector rayDirection)
     {
         const double eps = 1E-6F;
         
@@ -66,7 +61,7 @@ public class Triangle : Shape
         
         double det, invDet, u, v;
 
-        p = ray.Cross(edge2);
+        p = rayDirection.Cross(edge2);
         det = edge1.Dot(p);
         
         if (Math.Abs(det) < eps)
@@ -84,24 +79,26 @@ public class Triangle : Shape
         }
         
         q = t.Cross(edge1);
-        v = ray.Dot(q) * invDet;
+        v = rayDirection.Dot(q) * invDet;
         
         if (v < 0.0 || u + v > 1.0)
         {
             return null;
         }
         
-        var distance = Math.Abs(invDet * edge2.Dot(q));
+        var distance = invDet * edge2.Dot(q);
 
-        if (distance < 0)
+        if (distance > eps)
+        {
+            return Intersection.Found(
+                rayOrigin + rayDirection * distance,
+                distance,
+                N0 * (1 - u - v) + N1 * u + N2 * v);
+        }
+        else
         {
             return null;
         }
-
-        return Intersection.Found(
-            rayOrigin + ray * distance,
-            distance,
-            N0 * (1 - u - v) + N1 * u + N2 * v);
     }
 
     public override void Transform(Matrix4x4 transformation)
