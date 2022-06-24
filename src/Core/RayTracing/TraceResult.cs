@@ -20,11 +20,8 @@ public class TraceResult
 
     public static TraceResult FromIntersectionAndLightSource(Intersection? intersection, Vector lightSource)
     {
-        // cameraToPoint.GetUnitVector().Dot(_lightSource)
         if (intersection != null)
         {
-            // Console.WriteLine("Found " + intersection.Normal!.Dot(lightSource));
-            // return new TraceResult(intersection.Normal!.Dot(lightSource));
             return FromIntersection(intersection, lightSource);
         }
         else
@@ -36,7 +33,6 @@ public class TraceResult
     private static TraceResult FromIntersection(Intersection intersection, Vector lightSource)
     {
         var shading = (-lightSource).Dot(intersection.Normal);
-        // Console.WriteLine($"{-lightSource} * {intersection.Normal} = {shading}");
         return new TraceResult(intersection, shading); 
     }
 
@@ -45,10 +41,10 @@ public class TraceResult
         return new TraceResult(null, -3);
     }
 
-    // public static TraceResult FromInShadow(Intersection? intersection)
-    // {
-    //     return new TraceResult(intersection, 0);
-    // }
+    public static TraceResult FromInShadow(Intersection? intersection)
+    {
+        return new TraceResult(intersection, 0);
+    }
 
     public override string ToString()
     {
