@@ -6,11 +6,15 @@ namespace Core.RayTracing;
 
 public class TraceResult
 {
-    public Intersection Intersection { get; private set; }
     public double Shading { get; private set; }
+    public bool HasIntersection() => _intersection != null;
 
-    private TraceResult(double shading)
+    private Intersection? _intersection { get; set; }
+    
+
+    private TraceResult(Intersection? intersection, double shading)
     {
+        _intersection = intersection;
         Shading = shading;
     }
 
@@ -20,21 +24,34 @@ public class TraceResult
         if (intersection != null)
         {
             // Console.WriteLine("Found " + intersection.Normal!.Dot(lightSource));
-            return new TraceResult(intersection.Normal!.Dot(lightSource));
+            // return new TraceResult(intersection.Normal!.Dot(lightSource));
+            return FromIntersection(intersection, lightSource);
         }
         else
         {
-            return new TraceResult(0);
+            return FromMissingIntersection();
         }
     }
 
-    public static TraceResult InShadow()
+    private static TraceResult FromIntersection(Intersection intersection, Vector lightSource)
     {
-        return new TraceResult(0);
+        var shading = (-lightSource).Dot(intersection.Normal);
+        // Console.WriteLine($"{-lightSource} * {intersection.Normal} = {shading}");
+        return new TraceResult(intersection, shading); 
     }
+
+    private static TraceResult FromMissingIntersection()
+    {
+        return new TraceResult(null, -3);
+    }
+
+    // public static TraceResult FromInShadow(Intersection? intersection)
+    // {
+    //     return new TraceResult(intersection, 0);
+    // }
 
     public override string ToString()
     {
-        return $"TraceResult({Intersection?.Point}, {Shading})";
+        return $"TraceResult({_intersection?.Point}, {Shading})";
     }
 }

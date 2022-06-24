@@ -9,21 +9,12 @@ public class Camera
     public int Fov { get; private set; }
     public int SizeInPixels { get; private set; }
 
-    // private Point _viewpointLeftTop;
-
     private Camera(Point origin, Vector direction, int fov, int sizeInPixels)
     {
         Origin = origin;
         Direction = direction;
         Fov = fov;
         SizeInPixels = sizeInPixels;
-
-        // var viewpointCenter = Origin + Direction * Distance;
-        
-        // _viewpointLeftTop = Point.FromXYZ(
-        //     viewpointCenter.X - (SizeInPixels / 2.0 * DistancePerPixel),
-        //     viewpointCenter.Y - (SizeInPixels / 2.0 * DistancePerPixel),
-        //     viewpointCenter.Z);
     }
 
     public static Camera CreateNew(Point origin, Vector direction, int fov, int sizeInPixels) =>
@@ -31,43 +22,28 @@ public class Camera
 
     public static Camera CreateDefault()
     {
-        var cameraOrigin = Point.FromXYZ(0, 0, 1.15);
+        var cameraOrigin = Point.FromXYZ(0, 0, 1.5);
         var cameraDirection = Vector.FromXYZ(0, 0, -1);
-            
-        // Viewpoint = Plane.FromCenterAndNormal(
-        //     cameraOrigin + cameraDirection * distanceFromCameraToViewpoint,
-        //     cameraDirection);
             
         return new Camera(
             cameraOrigin,
             cameraDirection,
             60,
-            100);
+            200);
     }
 
+    // https://stackoverflow.com/questions/49236966/raytracer-high-fov-distortion
+    // https://stackoverflow.com/questions/13554252/calculation-for-ray-generation-in-ray-tracer
     public Vector GetRayOfPixel(int i, int j)
     {
         var fovScale = MathF.Tan(MathF.PI / 180f * Fov / 2);
 
-        // from -1 to 1, square, origin in the center
-        var xxScreen = (2 * ((i + 0.5f) / SizeInPixels) - 1);
-        var yyScreen = (1 - 2 * ((j + 0.5f) / SizeInPixels));
+        // i + 0.5 = move to the center of pixel
+        // / size = percentage of the way across the frame
+        // 2 * .. - 1 = restrict view by range (-1; 1) 
+        var x = (2 * (i + 0.5f) / SizeInPixels - 1) * fovScale;
+        var y = (1 - 2 * (j + 0.5f) / SizeInPixels) * fovScale;
 
-        var xx = xxScreen * fovScale;
-        var yy = yyScreen * fovScale;
-
-        var ray = Vector.FromXYZ(xx, yy, -1);
-
-        if (i % 100 == 0 && j % 100 == 0)
-        {
-            Console.WriteLine(i + " " + j);
-        }
-        
-        // var point = Point.FromXYZ(
-        //     _viewpointLeftTop.X + i * DistancePerPixel,
-        //     _viewpointLeftTop.Y + j * DistancePerPixel,
-        //     _viewpointLeftTop.Z);
-        
-        return ray;
+        return Vector.FromXYZ(x, y, Direction.Z);
     }
 }

@@ -30,9 +30,12 @@ namespace Core.Geometry
         public void Transform(Matrix4x4 transformation)
         {
             // Console.WriteLine(X + " " + transformation.M11);
-            X = transformation.M11 * X + transformation.M12 * Y + transformation.M13 * Z + transformation.M14;
-            Y = transformation.M21 * X + transformation.M22 * Y + transformation.M23 * Z + transformation.M24;
-            Z = transformation.M31 * X + transformation.M32 * Y + transformation.M33 * Z + transformation.M34;
+            var x = X;
+            var y = Y;
+            var z = Z;
+            X = transformation.M11 * x + transformation.M12 * y + transformation.M13 * z + transformation.M14;
+            Y = transformation.M21 * x + transformation.M22 * y + transformation.M23 * z + transformation.M24;
+            Z = transformation.M31 * x + transformation.M32 * y + transformation.M33 * z + transformation.M34;
         }
 
         public bool IsEqualTo(Point other, double epsilon = 0.01)

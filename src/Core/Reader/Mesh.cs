@@ -23,14 +23,15 @@ public class Mesh : ITransformable
     
     public void Transform(Matrix4x4 transformation)
     {
-        foreach (var vertex in Vertices)
-        {
-            vertex.Transform(transformation);
-        }
-        
         foreach (var normal in Normals)
         {
             normal.Transform(transformation);
+            normal.MakeUnit();
+        }
+        
+        foreach (var vertex in Vertices)
+        {
+            vertex.Transform(transformation);
         }
     }
 

@@ -1,4 +1,5 @@
 using Core.Matrices;
+using Core.RayTracing;
 
 namespace Core.Geometry
 {
@@ -27,6 +28,7 @@ namespace Core.Geometry
         public static Vector operator *(Vector one, double two) => FromXYZ(one.X * two, one.Y * two, one.Z * two);
         public static Vector operator +(Vector one, Vector two) => FromXYZ(one.X + two.X, one.Y + two.Y, one.Z + two.Z);
         public static Vector operator /(Vector one, double two) => new(one.X / two, one.Y / two, one.Z / two);
+        public static Vector operator -(Vector one) => new(-one.X, -one.Y, -one.Z);
 
         public double Dot(Vector vector)
         {
@@ -45,9 +47,20 @@ namespace Core.Geometry
 
         public void Transform(Matrix4x4 transformation)
         {
-            X = transformation.M11 * X + transformation.M12 * Y + transformation.M13 * Z;
-            Y = transformation.M21 * X + transformation.M22 * Y + transformation.M23 * Z;
-            Z = transformation.M31 * X + transformation.M32 * Y + transformation.M33 * Z;
+            var x = X;
+            var y = Y;
+            var z = Z;
+            X = transformation.M11 * x + transformation.M12 * y + transformation.M13 * z;
+            Y = transformation.M21 * x + transformation.M22 * y + transformation.M23 * z;
+            Z = transformation.M31 * x + transformation.M32 * y + transformation.M33 * z;
+        }
+
+        public void MakeUnit()
+        {
+            var length = GetLength();
+            X /= length;
+            Y /= length;
+            Z /= length;
         }
 
         public bool IsZero()
@@ -62,7 +75,7 @@ namespace Core.Geometry
 
         public Vector GetUnitVector()
         {
-            return this * (1 / GetLength());
+            return this / GetLength();
         }
         
         public override string ToString()
