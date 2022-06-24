@@ -36,7 +36,7 @@ namespace Core.Geometry.Shapes
         }
         
         // https://stackoverflow.com/questions/23975555/how-to-do-ray-plane-intersection
-        public override Intersection? GetIntersectionWith(Point origin, Vector ray)
+        public override Intersection? GetIntersectionWith(Point origin, Vector ray, Intersection? foundIntersection)
         {
             var top = -(D + origin.Z * Z + origin.Y * Y + origin.X * X);
             var down = ray.Z * Z + ray.Y * Y + ray.X * X;

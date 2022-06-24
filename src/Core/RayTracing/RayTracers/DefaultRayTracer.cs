@@ -20,7 +20,7 @@ public class DefaultRayTracer : IRayTracer
         
         foreach (var shape in _shapes)
         {
-            var shapeIntersection = shape.GetIntersectionWith(origin, direction); //TODO: pass nearestIntersection to abort early inside GetIntersectionWith
+            var shapeIntersection = shape.GetIntersectionWith(origin, direction, nearestIntersection);
             
             if (
                 shapeIntersection != null && 

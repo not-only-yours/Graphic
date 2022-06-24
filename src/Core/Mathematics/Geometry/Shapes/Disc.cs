@@ -23,7 +23,7 @@ public class Disc : Shape
 
     public static Disc FromCentreNormalAndTwoRadius(Point center, double radiusS, double radiusB, Vector normal) => new(center, radiusS, radiusB, normal);
 
-    public override Intersection? GetIntersectionWith(Point origin, Vector ray)
+    public override Intersection? GetIntersectionWith(Point origin, Vector ray, Intersection? foundIntersection)
     {
         // https://stackoverflow.com/questions/23975555/how-to-do-ray-plane-intersection
         var denom = Normal.Dot(ray);

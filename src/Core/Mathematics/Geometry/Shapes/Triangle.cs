@@ -45,7 +45,7 @@ public class Triangle : Shape
     }
 
     // https://en.wikipedia.org/wiki/M%C3%B6ller%E2%80%93Trumbore_intersection_algorithm
-    public override Intersection? GetIntersectionWith(Point rayOrigin, Vector rayDirection)
+    public override Intersection? GetIntersectionWith(Point rayOrigin, Vector rayDirection, Intersection? foundIntersection)
     {
         Point vertex0 = One;
         Point vertex1 = Two;
@@ -86,6 +86,8 @@ public class Triangle : Shape
         }
         
         var distance = invDet * edge2.Dot(q);
+
+        if (foundIntersection != null && distance > foundIntersection.Distance) return foundIntersection;
 
         if (distance > Constants.Eps)
         {

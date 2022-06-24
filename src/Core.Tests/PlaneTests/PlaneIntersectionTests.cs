@@ -38,7 +38,7 @@ public class PlaneIntersectionTests
     [TestCaseSource(nameof(Plane_PlaneIntersection_ReturnsPointOfIntersection_TestData))]
     public void Plane_GetDistanceTo_ReturnsCorrectDistance(Plane plane,Point point, Vector direction, Point intersection)
     {
-        var foundIntersection = plane.GetIntersectionWith(point, direction);
+        var foundIntersection = plane.GetIntersectionWith(point, direction, null);
         Assert.IsNotNull(foundIntersection.Point);
         Assert.IsTrue(foundIntersection.Point.ToString().Equals(intersection.ToString()));
     }
@@ -73,7 +73,7 @@ public class PlaneIntersectionTests
     [TestCaseSource(nameof(Plane_PlaneIntersection_ReturnsNull_TestData))]
     public void Plane_GetIntersectionWith_ReturnsNull(Plane plane,Point point, Vector direction, Point intersection)
     {
-        var foundIntersection = plane.GetIntersectionWith(point, direction);
+        var foundIntersection = plane.GetIntersectionWith(point, direction, null);
         Assert.IsNull(foundIntersection);
     }
 }

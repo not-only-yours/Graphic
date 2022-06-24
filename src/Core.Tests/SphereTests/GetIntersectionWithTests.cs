@@ -48,7 +48,7 @@ public class GetIntersectionWithTests
     public void Sphere_GetIntersectionWith_ReturnsCorrectFoundPoint(Sphere sphere, Vector ray, Point rayOrigin, Point intersection)
     {
 
-        var foundIntersection = sphere.GetIntersectionWith(rayOrigin, ray);
+        var foundIntersection = sphere.GetIntersectionWith(rayOrigin, ray, null);
         Console.WriteLine(foundIntersection.Point.ToString());
         Assert.IsNotNull(foundIntersection);
         Assert.IsTrue(foundIntersection.Point!.IsEqualTo(intersection));
@@ -84,7 +84,7 @@ public class GetIntersectionWithTests
     public void Sphere_GetIntersectionWith_ReturnsNullSphere(Sphere sphere, Vector ray, Point rayOrigin, Point intersection)
     {
 
-        var foundIntersection = sphere.GetIntersectionWith(rayOrigin, ray);
+        var foundIntersection = sphere.GetIntersectionWith(rayOrigin, ray, null);
         
         Assert.IsNull(foundIntersection);
     }

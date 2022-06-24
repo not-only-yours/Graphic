@@ -22,7 +22,7 @@ public class ShadowsRayTracer : IRayTracer
         
         foreach (var shape in _shapes)
         {
-            var shapeIntersection = shape.GetIntersectionWith(origin, direction); //TODO: pass nearestIntersection to abort early inside GetIntersectionWith
+            var shapeIntersection = shape.GetIntersectionWith(origin, direction, nearestIntersection);
             
             if (
                 shapeIntersection != null && 
@@ -37,7 +37,7 @@ public class ShadowsRayTracer : IRayTracer
         var shadowRayOrigin = nearestIntersection.Point + nearestIntersection.Normal * Constants.Eps;
         var shadowRayDirection = -_lightSource;
         
-        var inShadow = _shapes.Select(shape => shape.GetIntersectionWith(shadowRayOrigin, shadowRayDirection)).Any(intersection => intersection != null);
+        var inShadow = _shapes.Select(shape => shape.GetIntersectionWith(shadowRayOrigin, shadowRayDirection, null)).Any(intersection => intersection != null);
         if (inShadow) return TraceResult.FromInShadow(nearestIntersection);
         
         return TraceResult.FromIntersectionAndLightSource(nearestIntersection, _lightSource);

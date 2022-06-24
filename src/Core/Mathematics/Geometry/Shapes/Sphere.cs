@@ -17,7 +17,7 @@ public class Sphere : Shape
     public static Sphere FromCentreAndRadius(Point center, double radius) => new(center, radius);
 
     // http://www.cplusplus.com/forum/general/279409/
-    public override Intersection? GetIntersectionWith(Point rayOrigin, Vector rayDirection)
+    public override Intersection? GetIntersectionWith(Point rayOrigin, Vector rayDirection, Intersection? foundIntersection)
     {
         Vector originToCenter = rayOrigin - Center;
         double a = rayDirection.Dot(rayDirection);

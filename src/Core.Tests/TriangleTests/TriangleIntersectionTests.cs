@@ -64,7 +64,7 @@ public class TriangleIntersectionTests
     {
         var triangle = Triangle.FromPointsAndNormals(one, two, three, normal1, normal2, normal3);
         
-        var foundIntersection = triangle.GetIntersectionWith(rayOrigin, ray);
+        var foundIntersection = triangle.GetIntersectionWith(rayOrigin, ray, null);
         
         Assert.IsNotNull(foundIntersection);
         Assert.IsTrue(foundIntersection.Point!.IsEqualTo(intersection));
@@ -122,7 +122,7 @@ public class TriangleIntersectionTests
     {
         var triangle = Triangle.FromPointsAndNormals(one, two, three, normal1, normal2, normal3);
         
-        var foundIntersection = triangle.GetIntersectionWith(rayOrigin, ray);
+        var foundIntersection = triangle.GetIntersectionWith(rayOrigin, ray, null);
         
         Assert.IsNull(foundIntersection);
     }

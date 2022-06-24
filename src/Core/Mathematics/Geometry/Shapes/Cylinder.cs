@@ -20,7 +20,7 @@ public class Cylinder : Shape
 
     public static Cylinder FromCentreHeightAndRadius(Point center, double radius, double height) => new(center, radius, height);
 
-    public override Intersection? GetIntersectionWith(Point origin, Vector ray)
+    public override Intersection? GetIntersectionWith(Point origin, Vector ray, Intersection? foundIntersection)
     {
         var a = (ray.X * ray.X) + (ray.Z * ray.Z);
         var b = 2*(ray.X*(origin.X-Center.X) + ray.Z*(origin.Z-Center.Z));
