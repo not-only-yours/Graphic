@@ -17,11 +17,11 @@ public class Sphere : Shape
     public static Sphere FromCentreAndRadius(Point center, double radius) => new(center, radius);
 
     // http://www.cplusplus.com/forum/general/279409/
-    public override Intersection? GetIntersectionWith(Point origin, Vector ray)
+    public override Intersection? GetIntersectionWith(Point rayOrigin, Vector rayDirection)
     {
-        Vector originToCenter = origin - Center;
-        double a = ray.Dot(ray);
-        double b = 2 * ray.Dot(originToCenter);
+        Vector originToCenter = rayOrigin - Center;
+        double a = rayDirection.Dot(rayDirection);
+        double b = 2 * rayDirection.Dot(originToCenter);
         double c = originToCenter.Dot(originToCenter) - Radius * Radius;
         double discriminant = b * b - 4 * a * c;
         
@@ -30,37 +30,36 @@ public class Sphere : Shape
             // No Intersection
             return null;
         }
-        
-        if (discriminant == 0)
+        else if (discriminant == 0)
         {
-            if (ray.IsZero()) return null;
+            if (rayDirection.IsZero()) return null;
 
-            var point1 = origin + ray * (-0.5 * b / a);
+            var t = (-0.5 * b / a);
+            var point = rayOrigin + rayDirection * t;
             
             // Only one intersection
             return Intersection.Found(
-                point1,
-                point1.DistanceTo(Center),
-                point1 - Center);
+                point,
+                t,
+                point - Center);
         }
-        
-        double t = (-b + Math.Sqrt(discriminant)) / (2 * a);
-        double t2 = -b / a - t;
-        // TODO: compare to tMax (pass as param)
-        if (Math.Abs(t2) < Math.Abs(t)) t = t2;
+        else
+        {
+            double t = (-b + Math.Sqrt(discriminant)) / (2 * a);
+            double t2 = -b / a - t;
+            // TODO: compare to tMax (pass as param)
+            if (Math.Abs(t2) < Math.Abs(t)) t = t2;
 
-        var point = origin + ray * t;
-        
-        return Intersection.Found(
-            point,
-            point.DistanceTo(Center),
-            point - Center);
+            if (t < 0) return null;
+            
+            var point = rayOrigin + rayDirection * t;
+
+            return Intersection.Found(
+                point,
+                t,
+                point - Center);
+        }
     }
-
-    // public override double GetDistanceTo(Point point)
-    // {
-    //     return Math.Abs(Center.DistanceTo(point) - Radius);
-    // }
 
     public override void Transform(Matrix4x4 transformationMatrix)
     {
