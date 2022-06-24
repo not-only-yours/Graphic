@@ -1,4 +1,5 @@
 using Core.Geometry;
+using Core.Mathematics;
 
 namespace Core.Matrices;
 
@@ -125,7 +126,7 @@ public class Matrix4x4
             $"[{prettify(M41)} {prettify(M42)} {prettify(M43)} {prettify(M44)}]";
     }
     
-    public bool IsEqualTo(Matrix4x4 other, double epsilon = 0.01)
+    public bool IsEqualTo(Matrix4x4 other, double epsilon = Constants.Eps)
     {
         return Math.Abs(M11 - other.M11) < epsilon &&
                Math.Abs(M12 - other.M12) < epsilon &&

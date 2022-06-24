@@ -1,5 +1,6 @@
 using System.Collections;
 using Core.Geometry.Shapes.Abstract;
+using Core.Mathematics;
 using Core.Matrices;
 
 namespace Core.Geometry.Shapes;
@@ -46,8 +47,6 @@ public class Triangle : Shape
     // https://en.wikipedia.org/wiki/M%C3%B6ller%E2%80%93Trumbore_intersection_algorithm
     public override Intersection? GetIntersectionWith(Point rayOrigin, Vector rayDirection)
     {
-        const double eps = 1E-6F;
-        
         Point vertex0 = One;
         Point vertex1 = Two;
         Point vertex2 = Three;
@@ -64,7 +63,7 @@ public class Triangle : Shape
         p = rayDirection.Cross(edge2);
         det = edge1.Dot(p);
         
-        if (Math.Abs(det) < eps)
+        if (Math.Abs(det) < Constants.Eps)
         {
             return null;
         } 
@@ -88,7 +87,7 @@ public class Triangle : Shape
         
         var distance = invDet * edge2.Dot(q);
 
-        if (distance > eps)
+        if (distance > Constants.Eps)
         {
             return Intersection.Found(
                 rayOrigin + rayDirection * distance,
@@ -121,7 +120,7 @@ public class Triangle : Shape
         return $"Triangle(One={One}, Two={Two}, Three={Three})";
     }
     
-    public bool IsEqualTo(Triangle other, double epsilon = 0.01)
+    public bool IsEqualTo(Triangle other)
     {
         return One.IsEqualTo(other.One) &&
                Two.IsEqualTo(other.Two) &&

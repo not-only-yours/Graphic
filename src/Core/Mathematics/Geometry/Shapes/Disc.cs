@@ -1,4 +1,5 @@
 using Core.Geometry.Shapes.Abstract;
+using Core.Mathematics;
 using Core.Matrices;
 
 namespace Core.Geometry.Shapes;
@@ -26,7 +27,7 @@ public class Disc : Shape
     {
         // https://stackoverflow.com/questions/23975555/how-to-do-ray-plane-intersection
         var denom = Normal.Dot(ray);
-        if (Math.Abs(denom) > 0.0001f) // your favorite epsilon
+        if (Math.Abs(denom) > Constants.Eps)
         {
             var t = (Center - origin).Dot(Normal) / denom;
             if (t >= 0) return Intersection.Found(

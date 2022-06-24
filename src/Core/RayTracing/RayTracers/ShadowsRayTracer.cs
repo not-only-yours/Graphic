@@ -1,6 +1,7 @@
 ﻿using Core.Geometry;
 using Core.Geometry.Shapes;
 using Core.Geometry.Shapes.Abstract;
+using Core.Mathematics;
 
 namespace Core.RayTracing.RayTracers;
 
@@ -33,7 +34,7 @@ public class ShadowsRayTracer : IRayTracer
 
         if (nearestIntersection == null) return TraceResult.FromIntersectionAndLightSource(null, _lightSource);
 
-        var shadowRayOrigin = nearestIntersection.Point + nearestIntersection.Normal * 1E-4f;
+        var shadowRayOrigin = nearestIntersection.Point + nearestIntersection.Normal * Constants.Eps;
         var shadowRayDirection = -_lightSource;
         
         var inShadow = _shapes.Select(shape => shape.GetIntersectionWith(shadowRayOrigin, shadowRayDirection)).Any(intersection => intersection != null);

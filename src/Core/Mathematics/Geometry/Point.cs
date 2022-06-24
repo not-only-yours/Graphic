@@ -1,5 +1,6 @@
 using Core.Geometry.Shapes.Abstract;
 using Core.Matrices;
+using Microsoft.VisualBasic;
 
 namespace Core.Geometry
 {
@@ -38,7 +39,7 @@ namespace Core.Geometry
             Z = transformation.M31 * x + transformation.M32 * y + transformation.M33 * z + transformation.M34;
         }
 
-        public bool IsEqualTo(Point other, double epsilon = 0.01)
+        public bool IsEqualTo(Point other, double epsilon = Mathematics.Constants.Eps)
         {
             return Math.Abs(X - other.X) < epsilon &&
                    Math.Abs(Y - other.Y) < epsilon &&

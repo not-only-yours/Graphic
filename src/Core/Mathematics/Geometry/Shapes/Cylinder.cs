@@ -1,4 +1,5 @@
 using Core.Geometry.Shapes.Abstract;
+using Core.Mathematics;
 using Core.Matrices;
 
 namespace Core.Geometry.Shapes;
@@ -26,7 +27,7 @@ public class Cylinder : Shape
         var c = (origin.X - Center.X) * (origin.X - Center.X) + (origin.Z - Center.Z) * (origin.Z - Center.Z) - (Radius*Radius);
     
         var delta = b*b - 4*(a*c);
-        if(Math.Abs(delta) < 0.001) return null; 
+        if(Math.Abs(delta) < Constants.Eps) return null; 
         if(delta < 0.0) return null;
     
         var t1 = (-b - Math.Sqrt(delta))/(2*a);

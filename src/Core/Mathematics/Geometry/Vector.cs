@@ -1,3 +1,4 @@
+using Core.Mathematics;
 using Core.Matrices;
 using Core.RayTracing;
 
@@ -82,7 +83,7 @@ namespace Core.Geometry
         }
         
         
-        public bool IsEqualTo(Vector other, double epsilon = 0.01)
+        public bool IsEqualTo(Vector other, double epsilon = Constants.Eps)
         {
             return Math.Abs(X - other.X) < epsilon &&
                    Math.Abs(Y - other.Y) < epsilon &&
