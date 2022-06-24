@@ -9,8 +9,6 @@ namespace Core.Geometry
         public double Y { get; private set; }
         public double Z { get; private set; }
 
-        private static readonly Vector _empty = new Vector(0, 0, 0);
-        
         private Vector(double x, double y, double z)
         {
             X = x;
@@ -23,12 +21,12 @@ namespace Core.Geometry
                 endPoint.Y - startPoint.Y,
                 endPoint.Z - startPoint.Z);
         public static Vector FromXYZ(double x, double y, double z) => new(x, y, z);
-        public static Vector Empty() => _empty;
+        public static Vector Empty() => new(0, 0, 0);
         
         public static Vector operator *(Vector one, double two) => FromXYZ(one.X * two, one.Y * two, one.Z * two);
         public static Vector operator +(Vector one, Vector two) => FromXYZ(one.X + two.X, one.Y + two.Y, one.Z + two.Z);
         public static Vector operator /(Vector one, double two) => new(one.X / two, one.Y / two, one.Z / two);
-        public static Vector operator -(Vector one) => new(-one.X, -one.Y, -one.Z);
+        public static Vector operator -(Vector one) => new(-1 * one.X, -1 * one.Y, -1 * one.Z);
 
         public double Dot(Vector vector)
         {
