@@ -1,5 +1,6 @@
 ﻿using Core.Geometry;
 using Core.RayTracing;
+using Core.RayTracing.Image;
 
 namespace Core.Scenery;
 
@@ -19,9 +20,9 @@ public class Scene
         Camera = camera;
     }
 
-    public Image RayTrace(IRayTracer rayTracer)
+    public TraceResult[,] RayTrace(IRayTracer rayTracer)
     {
-        var image = Image.FromResolution(Camera.SizeInPixels);
+        var results = new TraceResult[Camera.SizeInPixels, Camera.SizeInPixels];
         
         // Console.WriteLine(Camera.GetPointOfPixel(0, 0));
         // Console.WriteLine(Camera.GetPointOfPixel(Camera.SizeInPixels - 1, Camera.SizeInPixels - 1));
@@ -32,11 +33,11 @@ public class Scene
             {
                 // Currently viewpoint and points are both hardcoded
                 var ray = Camera.GetRayOfPixel(i, j);
-                image[i, j] = rayTracer.Trace(Camera.Origin, ray);
+                results[i, j] = rayTracer.Trace(Camera.Origin, ray);
             }
         }
 
-        return image;
+        return results;
     }
     
     

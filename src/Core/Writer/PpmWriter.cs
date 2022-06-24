@@ -1,9 +1,10 @@
 using Core.Geometry;
+using Core.RayTracing.Image;
 using Core.Scenery;
 
 namespace Core.Writer;
 
-public class PpmWriter : IWriter
+public class PpmWriter : IWriter<ColoredPixel>
 {
     private readonly string _outputPath;
 
@@ -12,21 +13,18 @@ public class PpmWriter : IWriter
         _outputPath = outputPath;
     }
     
-    public void Write(Image image)
+    public void Write(Image<ColoredPixel> image)
     {
         var writer = new StreamWriter(_outputPath);
         writer.WriteLine("P3");
         writer.WriteLine($"{image.Width}  {image.Height}");
         writer.WriteLine("255");
         
-        var grayMultiplier = Vector.FromXYZ(255, 255, 255);   
-        
         for (var i = 0; i < image.Height; i++)
         {
             for (var j = 0; j < image.Width; j++)
             {
-                var shading = image[i, j].Shading;
-                writer.WriteLine((int)(grayMultiplier * shading).X + " " + (int)(grayMultiplier * shading).Y + " " + (int)(grayMultiplier * shading).Z);
+                writer.WriteLine(image[i, j].R + " " + image[i, j].G + " " + image[i, j].B);
                 // switch (shading)
                 // {
                 //     case < 0:
