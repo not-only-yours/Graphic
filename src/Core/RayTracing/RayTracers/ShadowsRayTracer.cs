@@ -1,16 +1,15 @@
 ﻿using Core.Geometry;
 using Core.Geometry.Shapes;
 using Core.Geometry.Shapes.Abstract;
-using Core.Scenery;
 
-namespace Core.RayTracing;
+namespace Core.RayTracing.RayTracers;
 
-public class ShapesWithLightSourceRayTracer : IRayTracer
+public class ShadowsRayTracer : IRayTracer
 {
     private readonly IEnumerable<Shape> _shapes;
     private readonly Vector _lightSource;
     
-    public ShapesWithLightSourceRayTracer(IEnumerable<Shape> shapes, Vector lightSource)
+    public ShadowsRayTracer(IEnumerable<Shape> shapes, Vector lightSource)
     {
         _shapes = shapes;
         _lightSource = lightSource;
@@ -32,6 +31,14 @@ public class ShapesWithLightSourceRayTracer : IRayTracer
             }
         }
 
+        if (nearestIntersection == null) return TraceResult.FromIntersectionAndLightSource(null, _lightSource);
+
+        var shadowRayOrigin = nearestIntersection.Point + nearestIntersection.Normal * 1E-4f;
+        var shadowRayDirection = -_lightSource;
+        
+        var inShadow = _shapes.Select(shape => shape.GetIntersectionWith(shadowRayOrigin, shadowRayDirection)).Any(intersection => intersection != null);
+        if (inShadow) return TraceResult.FromInShadow(nearestIntersection);
+        
         return TraceResult.FromIntersectionAndLightSource(nearestIntersection, _lightSource);
     }
 }

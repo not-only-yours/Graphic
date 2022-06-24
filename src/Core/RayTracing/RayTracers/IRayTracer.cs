@@ -1,6 +1,6 @@
 ﻿using Core.Geometry;
 
-namespace Core.RayTracing;
+namespace Core.RayTracing.RayTracers;
 
 public interface IRayTracer
 {
