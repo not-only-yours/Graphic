@@ -120,4 +120,14 @@ public class Triangle : Shape
     {
         return $"Triangle(One={One}, Two={Two}, Three={Three})";
     }
+    
+    public bool IsEqualTo(Triangle other, double epsilon = 0.01)
+    {
+        return One.IsEqualTo(other.One) &&
+               Two.IsEqualTo(other.Two) &&
+               Three.IsEqualTo(other.Three) &&
+               N0.IsEqualTo(other.N0) &&
+               N1.IsEqualTo(other.N1) &&
+               N2.IsEqualTo(other.N2);
+    } 
 }

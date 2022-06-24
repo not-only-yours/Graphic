@@ -1,7 +1,23 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=0c9c3c69_002Dd44c_002D4885_002D9e4a_002D10ccc6f0c824/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from &amp;lt;Core.Tests&amp;gt;" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;Project Location="D:\Programming\dotnet\Graphic\src\Core.Tests" Presentation="&amp;lt;Core.Tests&amp;gt;" /&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=0c9c3c69_002Dd44c_002D4885_002D9e4a_002D10ccc6f0c824/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from &amp;lt;Core.Tests&amp;gt;" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;Project Location="D:\Programming\dotnet\Graphic\src\Core.Tests" Presentation="&amp;lt;Core.Tests&amp;gt;" /&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=93919834_002D33ec_002D4414_002Da228_002D9566cd60b928/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from &amp;lt;Core.Tests&amp;gt; #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;Project Location="D:\Programming\dotnet\Graphic\src\Core.Tests" Presentation="&amp;lt;Core.Tests&amp;gt;" /&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=93919834_002D33ec_002D4414_002Da228_002D9566cd60b928/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from &amp;lt;Core.Tests&amp;gt; #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;NUnit3x::9ADCF538-419B-41B0-9D7D-82B351CEEBFD::net6.0::Core.Tests.TriangleTests.TriangleTransformTests.Triangle_Transformation_ReturnsCorrectTriangle&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::9ADCF538-419B-41B0-9D7D-82B351CEEBFD::net6.0::Core.Tests.TriangleTests.TriangleIntersectionTests&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::9ADCF538-419B-41B0-9D7D-82B351CEEBFD::net6.0::Core.Tests.SphereTests.GetIntersectionWithTests&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::9ADCF538-419B-41B0-9D7D-82B351CEEBFD::net6.0::Core.Tests.PointTests.PointTransformTests&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=c2cde9c0_002D1f5c_002D4362_002Db74b_002D6e1b23aadf1a/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="MatricesFunctionalityTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;NUnit3x::9ADCF538-419B-41B0-9D7D-82B351CEEBFD::net6.0::Core.Tests.MatricesTests.MatricesFunctionalityTests&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::9ADCF538-419B-41B0-9D7D-82B351CEEBFD::net6.0::Core.Tests.TriangleTests.TriangleIntersectionTests&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=fb8f98c9_002D3a97_002D4a1e_002Da05b_002D3f8580efc8fe/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="PlaneIntersectionTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;NUnit3x::9ADCF538-419B-41B0-9D7D-82B351CEEBFD::net6.0::Core.Tests.PlaneTests.PlaneIntersectionTests&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
