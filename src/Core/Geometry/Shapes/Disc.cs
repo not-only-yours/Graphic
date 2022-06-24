@@ -1,3 +1,6 @@
+using Core.Geometry.Shapes.Abstract;
+using Core.Matrices;
+
 namespace Core.Geometry.Shapes;
 
 public class Disc : Shape
@@ -19,20 +22,24 @@ public class Disc : Shape
 
     public static Disc FromCentreNormalAndTwoRadius(Point center, double radiusS, double radiusB, Vector normal) => new(center, radiusS, radiusB, normal);
 
-    public override Point? GetIntersectionWith(Point origin, Vector ray)
+    public override Intersection? GetIntersectionWith(Point origin, Vector ray)
     {
         // https://stackoverflow.com/questions/23975555/how-to-do-ray-plane-intersection
         var denom = Normal.Dot(ray);
         if (Math.Abs(denom) > 0.0001f) // your favorite epsilon
         {
             var t = (Center - origin).Dot(Normal) / denom;
-            if (t >= 0) return origin + ray * t; // you might want to allow an epsilon here too
+            if (t >= 0) return Intersection.Found(
+                origin + ray * t,
+                0,
+                Vector.Empty()); // you might want to allow an epsilon here too 
+                //TODO: fix
         }
 
         return null;
     }
 
-    public override double GetDistanceTo(Point point)
+    public override void Transform(Matrix4x4 transformationMatrix)
     {
         throw new NotImplementedException();
     }

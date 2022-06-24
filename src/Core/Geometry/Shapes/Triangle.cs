@@ -1,4 +1,6 @@
 using System.Collections;
+using Core.Geometry.Shapes.Abstract;
+using Core.Matrices;
 
 namespace Core.Geometry.Shapes;
 
@@ -8,7 +10,9 @@ public class Triangle : Shape
     public Point Two { get; private set; }
     public Point Three { get; private set; }
     
-    public ArrayList Normal { get; private set; }
+    public Vector N0 { get; private set; }
+    public Vector N1 { get; private set; }
+    public Vector N2 { get; private set; }
     
     private Triangle(Point one, Point two, Point three) {
         One = one;
@@ -16,21 +20,23 @@ public class Triangle : Shape
         Three = three;
     }
     
-    private Triangle(Point one, Point two, Point three, ArrayList normal) {
+    private Triangle(Point one, Point two, Point three, Vector n0, Vector n1, Vector n2) {
         One = one;
         Two = two;
         Three = three;
-        Normal = normal;
+        N0 = n0;
+        N1 = n1;
+        N2 = n2;
     }
 
-    public static Triangle FromPoints(Point one, Point two, Point three)
-    {
-        return new Triangle(one, two, three);
-    }
+    // public static Triangle FromPoints(Point one, Point two, Point three)
+    // {
+    //     return new Triangle(one, two, three);
+    // }
     
-    public static Triangle FromPointsAndNormal(Point one, Point two, Point three, ArrayList normal)
+    public static Triangle FromPointsAndNormals(Point one, Point two, Point three, Vector n0, Vector n1, Vector n2)
     {
-        return new Triangle(one, two, three, normal);
+        return new Triangle(one, two, three, n0, n1, n2);
     }
     
     public Vector GetNormalVector()
@@ -43,9 +49,9 @@ public class Triangle : Shape
     }
 
     // https://en.wikipedia.org/wiki/M%C3%B6ller%E2%80%93Trumbore_intersection_algorithm
-    public override Point? GetIntersectionWith(Point rayOrigin, Vector ray)
+    public override Intersection? GetIntersectionWith(Point rayOrigin, Vector ray)
     {
-        const double eps = 0.0000001;
+        const double eps = 1E-6F;
         
         Point vertex0 = One;
         Point vertex1 = Two;
@@ -54,53 +60,65 @@ public class Triangle : Shape
         Vector edge1 = vertex1 - vertex0;
         Vector edge2 = vertex2 - vertex0;
         
-        Vector h = Vector.Empty();
-        Vector s = Vector.Empty();
+        Vector p = Vector.Empty();
+        Vector t = Vector.Empty();
         Vector q = Vector.Empty();
         
-        double a, f, u, v;
+        double det, invDet, u, v;
 
-        h = ray.Cross(edge2);
-        a = edge1.Dot(h);
+        p = ray.Cross(edge2);
+        det = edge1.Dot(p);
         
-        if (a is > -eps and < eps)
+        if (Math.Abs(det) < eps)
         {
             return null;
         } 
         
-        f = 1.0 / a;
-        s = rayOrigin - vertex0;
-        u = f * s.Dot(h);
+        invDet = 1.0 / det;
+        t = rayOrigin - vertex0;
+        u = t.Dot(p) * invDet;
         
         if (u is < 0.0 or > 1.0)
         {
             return null;
         }
         
-        q = s.Cross(edge1);
-        v = f * ray.Dot(q);
+        q = t.Cross(edge1);
+        v = ray.Dot(q) * invDet;
         
         if (v < 0.0 || u + v > 1.0)
         {
             return null;
         }
         
-        var t = Math.Abs(f * edge2.Dot(q));
-        
-        if (t > eps) // ray intersection
+        var distance = Math.Abs(invDet * edge2.Dot(q));
+
+        if (distance < 0)
         {
-            var answer = rayOrigin + ray * t;
-            return answer;
+            return null;
         }
-        
-        return null;
+
+        return Intersection.Found(
+            rayOrigin + ray * distance,
+            distance,
+            N0 * (1 - u - v) + N1 * u + N2 * v);
     }
 
-    public override double GetDistanceTo(Point point)
+    public override void Transform(Matrix4x4 transformation)
     {
-        throw new NotImplementedException();
+        // One = One.Tr transformation * One;
+        One.Transform(transformation);
+        Two.Transform(transformation);
+        Three.Transform(transformation);
+
+        N0.Transform(transformation);
+        N0 = N0.GetUnitVector();
+        N1.Transform(transformation);
+        N1 = N1.GetUnitVector();
+        N2.Transform(transformation);
+        N2 = N2.GetUnitVector();
     }
-    
+
     public override string ToString()
     {
         return $"Triangle(One={One}, Two={Two}, Three={Three})";

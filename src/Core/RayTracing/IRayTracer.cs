@@ -4,5 +4,5 @@ namespace Core.RayTracing;
 
 public interface IRayTracer
 {
-    public char Trace(Point point);
+    public TraceResult Trace(Point origin, Vector direction);
 }
