@@ -51,10 +51,11 @@ public class Sphere : Shape
 
         var point = origin + ray * t;
         
-        return Intersection.Found(
+        return a!=0 ? Intersection.Found(
             point,
             point.DistanceTo(Center),
-            point - Center);
+            point - Center)
+                : null;
     }
 
     // public override double GetDistanceTo(Point point)

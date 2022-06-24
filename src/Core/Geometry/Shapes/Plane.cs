@@ -38,11 +38,12 @@ namespace Core.Geometry.Shapes
         // https://stackoverflow.com/questions/23975555/how-to-do-ray-plane-intersection
         public override Intersection? GetIntersectionWith(Point origin, Vector ray)
         {
-            var t = -(D + origin.Z * Z + origin.Y * Y + origin.X * X) / (ray.Z * Z + ray.Y * Y + ray.X * X);
-            return Intersection.Found(
-                origin + ray * t,
-                t,
-                Normal * -1);
+            var top = -(D + origin.Z * Z + origin.Y * Y + origin.X * X);
+            var down = ray.Z * Z + ray.Y * Y + ray.X * X;
+            var t =  top / down;
+            return down != 0 ? 
+                Intersection.Found(origin + ray * t, t, Normal * -1) 
+                : null;
         }
 
         // public override double GetDistanceTo(Point point)

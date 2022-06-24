@@ -82,5 +82,13 @@ namespace Core.Geometry
         {
             return $"Vector(X={X}, Y={Y}, Z={Z})";
         }
+        
+        
+        public bool IsEqualTo(Vector other, double epsilon = 0.01)
+        {
+            return Math.Abs(X - other.X) < epsilon &&
+                   Math.Abs(Y - other.Y) < epsilon &&
+                   Math.Abs(Z - other.Z) < epsilon;
+        }
     }
 }
