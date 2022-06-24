@@ -28,7 +28,7 @@ namespace Core
             
             mesh.Transform(transformation);
             
-            var tracer = new ShapesWithLightSourceRayTracer(mesh.GetTriangles(), camera, lightSource);
+            var tracer = new ShapesWithLightSourceRayTracer(mesh.GetTriangles(), lightSource);
             
             // var tracer = new ShapesWithLightSourceRayTracer(new List<Shape>() {Sphere.FromCentreAndRadius(Point.FromXYZ(0, 0, 0), 0.2)}, camera, lightSource);
             
