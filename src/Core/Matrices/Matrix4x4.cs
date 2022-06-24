@@ -56,8 +56,8 @@ public class Matrix4x4
     
     public static Matrix4x4 CreateXRotation(float angle)
     {
-        var cos = Convert.ToSingle(MathF.Cos(angle));
-        var sin = Convert.ToSingle(Math.Sin(angle));
+        var cos = MathF.Cos(angle);
+        var sin = MathF.Sin(angle);
         
         return new Matrix4x4(
             1, 0,   0,    0,
@@ -112,19 +112,16 @@ public class Matrix4x4
             one.M41 * two.M13 + one.M42 * two.M23 + one.M43 * two.M33 + one.M44 * two.M43,
             one.M41 * two.M14 + one.M42 * two.M24 + one.M43 * two.M34 + one.M44 * two.M44
         );
-
+   
     
-    // public static Vector operator *(Matrix4x4 one, Vector two) =>
-    //     Vector.FromXYZ(
-    //         one.M11 * two.X + one.M12 * two.Y + one.M13 * two.Z,
-    //         one.M21 * two.X + one.M22 * two.Y + one.M23 * two.Z,
-    //         one.M31 * two.X + one.M32 * two.Y + one.M33 * two.Z
-    //     );
-    //
-    // public static Point operator *(Matrix4x4 one, Point two) =>
-    //     Point.FromXYZ(
-    //         one.M11 * two.X + one.M12 * two.Y + one.M13 * two.Z + one.M14,
-    //         one.M21 * two.X + one.M22 * two.Y + one.M23 * two.Z + one.M24,
-    //         one.M31 * two.X + one.M32 * two.Y + one.M33 * two.Z + one.M34
-    //     );
+    public override string ToString()
+    {
+        var prettify = (float num) => Math.Round(num, 2).ToString().PadLeft(5);
+        
+        return
+            $"[{prettify(M11)} {prettify(M12)} {prettify(M13)} {prettify(M14)}]\n" + 
+            $"[{prettify(M21)} {prettify(M22)} {prettify(M23)} {prettify(M24)}]\n" +
+            $"[{prettify(M31)} {prettify(M32)} {prettify(M33)} {prettify(M34)}]\n" +
+            $"[{prettify(M41)} {prettify(M42)} {prettify(M43)} {prettify(M44)}]";
+    }
 }
